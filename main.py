@@ -48,15 +48,16 @@ class MP3:
 
     @classmethod
     def vyber_skladbu(self):
-
+        x=random.sample(self.instances,1)
         for i in self.instances:
-            akt_skladba_z = []
-            akt_skladba_z.append(i.name)
-            akt_skladba_z.append(i.interpret)
-            akt_skladba_z.append(i.duration)
-            return akt_skladba_z
+            if x[0]==i:
+                akt_skladba_z = []
+                akt_skladba_z.append(i.name)
+                akt_skladba_z.append(i.interpret)
+                akt_skladba_z.append(i.duration)
+                return akt_skladba_z
 
-    akt_skladba_z = []
+
 
 
 MP3.add(alltitles)
@@ -64,7 +65,7 @@ MP3.writeinterpret()
 
 
 # pygame časť
-Width, Height = 250 , 400
+Width, Height = 450 ,400
 screen = pygame.display.set_mode((Width, Height))
 
 
@@ -82,8 +83,7 @@ nextimg = pygame.image.load("next.png")
 stopimg = pygame.image.load("stop.png")
 
 pygame.font.init()
-akt_skladba_z=MP3.vyber_skladbu()
-print(akt_skladba_z)
+
 
 font = pygame.font.Font('freesansbold.ttf', 32)
 text = font.render('Play', True,(255,255,255), None)
@@ -91,11 +91,9 @@ text = font.render('Play', True,(255,255,255), None)
 #nextimg=pygame.image.load("next.png")
 
 def main():
+    akt_skladba_z = MP3.vyber_skladbu()
     run = True
     while run:
-        text_name = font.render(akt_skladba_z[0], True, (255,255,255) ,None)
-        text_interpret = font.render(akt_skladba_z[1], True, (255, 255, 255),None)
-        text_duration = font.render(str(akt_skladba_z[2]), True, (255, 255, 255),None)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -107,8 +105,12 @@ def main():
                 if (stopx < pos[0] and stopx + 80 > pos[0] and stopy < pos[1] and stopy + 40 > pos[1]):
                     print('stop')
                 if (nextx < pos[0] and nextx + 80 > pos[0] and nexty < pos[1] and nexty + 40 >pos[1]):
-                    print('next')
+                    akt_skladba_z=MP3.vyber_skladbu()
+                    pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(0, 0, Width, 300))
 
+        text_name = font.render(akt_skladba_z[0], True, (255, 255, 255), None)
+        text_interpret = font.render(akt_skladba_z[1], True, (255, 255, 255), None)
+        text_duration = font.render(str(akt_skladba_z[2]), True, (255, 255, 255), None)
 
         screen.blit(playimg, (0,0))
         screen.blit(stopimg, (0,80))
