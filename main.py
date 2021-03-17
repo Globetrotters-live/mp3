@@ -1,7 +1,10 @@
 import random
 import pygame
+from playsound import playsound
 
 
+
+# playsound("D:\\test-git-projekty\\mp3py\\mp3\\songy\\song1.mp3")
 
 alltitles = open("titles.txt").read().split("\n")
 song1='Stereoact feat. Chris Cronauer - Nummer Eins (Official Video HD).mp3'
@@ -108,8 +111,10 @@ def main():
                 pos = pygame.mouse.get_pos()
                 if (playx < pos[0] and playx +80 > pos[0] and playy<pos[1] and playy+40 >pos[1]):
                     print('play')
+                    playsound("D:\\test-git-projekty\\mp3py\\mp3\\songy\\song1.mp3")
                 if (stopx < pos[0] and stopx + 80 > pos[0] and stopy < pos[1] and stopy + 40 > pos[1]):
                     print('stop')
+                    pygame.quit()
                 if (nextx < pos[0] and nextx + 80 > pos[0] and nexty < pos[1] and nexty + 40 >pos[1]):
                     akt_skladba_z=MP3.vyber_skladbu()
                     pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(0, 0, Width, 300))
