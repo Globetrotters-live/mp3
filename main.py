@@ -1,6 +1,8 @@
 import random
 import pygame
 
+
+
 alltitles = open("titles.txt").read().split("\n")
 song1='Stereoact feat. Chris Cronauer - Nummer Eins (Official Video HD).mp3'
 song2='Stereoact feat. Kerstin Ott - Die Immer Lacht (Official Video HD).mp3'
