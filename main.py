@@ -2,6 +2,10 @@ import random
 import pygame
 
 alltitles = open("titles.txt").read().split("\n")
+song1='Stereoact feat. Chris Cronauer - Nummer Eins (Official Video HD).mp3'
+song2='Stereoact feat. Kerstin Ott - Die Immer Lacht (Official Video HD).mp3'
+song3='United (feat. Marky Mark) (Radio Edit).mp3'
+
 class MP3:
 
     instances = set()
